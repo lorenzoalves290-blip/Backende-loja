@@ -25,12 +25,26 @@ export default async (req) => {
     return new Response(JSON.stringify({ ok: false, error: "Método não permitido." }), { status: 405, headers });
   }
 
-  const token = Netlify.env.get("CJ_ACCESS_TOKEN");
+  let token = Netlify.env.get("CJ_ACCESS_TOKEN");
+  const apiKey = Netlify.env.get("CJ_API_KEY");
+
+  if (!token && apiKey) {
+    const auth = await fetch("https://developers.cjdropshipping.com/api2.0/v1/authentication/getAccessToken", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ apiKey })
+    });
+    const authData = await auth.json().catch(() => null);
+    if (auth.ok && authData?.code === 200 && authData?.data?.accessToken) {
+      token = authData.data.accessToken;
+    }
+  }
+
   if (!token) {
     return new Response(JSON.stringify({
       ok: false,
       setupRequired: true,
-      error: "A integração da CJ ainda precisa do CJ_ACCESS_TOKEN nas variáveis privadas da Netlify."
+      error: "Adicione CJ_API_KEY (recomendado) ou CJ_ACCESS_TOKEN nas variáveis privadas da Netlify."
     }), { status: 503, headers });
   }
 
