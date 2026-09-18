@@ -1,1 +1,52 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zenvik | Loja Oficial</title><meta name="description" content="Zenvik — loja online"><style>*{box-sizing:border-box}body{margin:0;background:#0f0f12;color:#fff;font:16px Arial,sans-serif}header{padding:18px 24px;border-bottom:1px solid #29292f;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#0f0f12ee;z-index:5}.logo{font-size:25px;font-weight:800}.accent{color:#00e5ff}.login,.btn{padding:12px 16px;border-radius:10px;cursor:pointer;font-weight:800}.login{background:#18181c;color:#fff;border:1px solid #333}.btn{background:#00e5ff;color:#061014;border:0;text-decoration:none}main{max-width:1150px;margin:auto;padding:28px 20px}.hero{padding:55px 0 35px}.hero h1{font-size:clamp(38px,7vw,64px);margin:0 0 12px}.hero p,.muted{color:#aaa;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}.card,.oauth{background:#18181c;border:1px solid #29292f;border-radius:16px;padding:20px}.price{font-size:23px;font-weight:800}.oauth{margin:20px 0}.oauth button{background:#fff;color:#111}</style></head><body><header><div class="logo">ZEN<span class="accent">VIK</span></div><button class="login" id="googleLogin">Entrar com Google</button></header><main><section class="hero"><h1>Compre de forma <span class="accent">simples.</span></h1><p>A Zenvik reúne produtos selecionados em uma loja moderna, com checkout via Mercado Pago e login opcional com Google.</p><a class="btn" href="#produtos">Ver produtos</a></section><section class="oauth"><strong>🔐 OAuth 2.0 + OpenID Connect</strong><p class="muted">Login preparado para Authorization Code + PKCE. O Client ID do Google ainda precisa ser configurado.</p><button class="btn" id="googleLogin2">Continuar com Google</button></section><section id="produtos"><h2>Produtos em destaque</h2><div class="grid"><div class="card"><h3>Jogo de Panelas Antiaderentes 10 Peças</h3><p class="muted">Baunilha Nacional</p><div class="price">R$ 269,90</div></div><div class="card"><h3>Escorredor de Louças 2 Andares</h3><p class="muted">Aço Carbono Preto</p><div class="price">R$ 229,90</div></div><div class="card"><h3>Kit 6 Capas de Cadeira</h3><p class="muted">Malha Spandex</p><div class="price">Consulte</div></div></div></section></main><script>const GOOGLE_CLIENT_ID="COLOQUE_SEU_CLIENT_ID_AQUI.apps.googleusercontent.com";function loginGoogle(){if(GOOGLE_CLIENT_ID.startsWith("COLOQUE_")){alert("Falta configurar o Client ID do Google.");return}const state=crypto.randomUUID();const p=new URLSearchParams({client_id:GOOGLE_CLIENT_ID,redirect_uri:location.origin+location.pathname,response_type:"code",scope:"openid email profile",state,code_challenge_method:"S256"});sessionStorage.setItem("oauth_state",state);location.href="https://accounts.google.com/o/oauth2/v2/auth?"+p}googleLogin.onclick=loginGoogle;googleLogin2.onclick=loginGoogle;</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zenvik | Loja Oficial</title>
+<meta name="description" content="Zenvik — tecnologia, casa e produtos selecionados.">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b0d10;color:#f5f7fa;font:15px Inter,Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:#0b0d10ee;backdrop-filter:blur(12px);border-bottom:1px solid #242830;padding:14px 5%;display:flex;align-items:center;gap:18px}
+.logo{font-size:25px;font-weight:900;letter-spacing:-1px}.cyan{color:#00e5ff}nav{display:flex;gap:16px;margin-left:auto}nav a{color:#aeb5bf;text-decoration:none}.account{border:1px solid #303640;background:#15181d;color:#fff;border-radius:10px;padding:10px 14px;font-weight:700}
+main{max-width:1200px;margin:auto;padding:30px 5%}.hero{padding:45px 0 35px;display:grid;grid-template-columns:1.4fr .8fr;gap:25px;align-items:center}.hero h1{font-size:clamp(42px,7vw,72px);line-height:.98;margin:0 0 18px}.hero p{color:#aeb5bf;line-height:1.7;max-width:650px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:13px 17px;font-weight:800;cursor:pointer}.primary{background:#00e5ff;color:#031015}.secondary{background:#171b20;color:#fff;border:1px solid #303640}.hero-box{border:1px solid #293039;border-radius:22px;padding:28px;background:linear-gradient(145deg,#151a20,#0e1014);box-shadow:0 20px 60px #0008}.hero-box strong{font-size:42px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:25px 0 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:15px}.card{background:#15181d;border:1px solid #282e36;border-radius:17px;padding:18px;display:flex;flex-direction:column;min-height:245px}.tag{font-size:12px;color:#00e5ff;text-transform:uppercase;font-weight:800}.card h3{margin:9px 0}.muted{color:#9da5af;line-height:1.5}.price{font-size:23px;font-weight:900;margin-top:auto}.buy{margin-top:12px;width:100%}.bar{display:flex;gap:10px;margin:20px 0}.search{flex:1;background:#15181d;border:1px solid #303640;color:#fff;border-radius:11px;padding:13px}.cart{position:fixed;right:20px;bottom:20px;background:#00e5ff;color:#031015;border:0;border-radius:50px;padding:15px 19px;font-weight:900;box-shadow:0 8px 30px #0008}.modal{display:none;position:fixed;inset:0;background:#000a;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.on{display:flex}.modal-card{background:#15181d;border:1px solid #343b45;border-radius:18px;padding:24px;max-width:470px;width:100%}.modal-card h2{margin-top:0}.close{float:right;background:none;border:0;color:#aaa;font-size:24px;cursor:pointer}.notice{background:#111820;border:1px solid #234552;padding:12px;border-radius:10px;color:#a9dce5;font-size:13px}
+footer{border-top:1px solid #242830;margin-top:60px;padding:30px 5%;color:#818994}
+@media(max-width:750px){.hero{grid-template-columns:1fr}nav{display:none}}
+</style>
+</head>
+<body>
+<header><div class="logo">ZEN<span class="cyan">VIK</span></div><nav><a href="#produtos">Produtos</a><a href="#seguranca">Segurança</a></nav><button class="account" onclick="openLogin()">Entrar</button></header>
+<main>
+<section class="hero"><div><div class="tag">LOJA OFICIAL</div><h1>Seu próximo produto está na <span class="cyan">Zenvik.</span></h1><p>Uma experiência de compra moderna, rápida e preparada para Mercado Pago. O login usa OAuth 2.0 + OpenID Connect quando o provedor estiver configurado.</p><div class="actions"><a class="btn primary" href="#produtos">Ver produtos</a><button class="btn secondary" onclick="openLogin()">Entrar com Google</button></div></div><div class="hero-box"><div class="tag">ZEN VIK</div><strong>⚡</strong><p>Produtos selecionados, checkout seguro e acompanhamento do pedido.</p></div></section>
+<div class="bar"><input id="search" class="search" placeholder="Buscar produto..." oninput="render()"></div>
+<section id="produtos"><div class="section-title"><h2>Produtos</h2><span id="count" class="muted"></span></div><div id="grid" class="grid"></div></section>
+<section id="seguranca" class="hero-box" style="margin-top:30px"><h2>🔐 Segurança</h2><p class="muted">A Zenvik usa OAuth 2.0/OpenID Connect para identidade. Tokens e segredos de servidor não ficam no HTML. O Mercado Pago deve ser integrado por uma URL/Checkout ou por um backend seguro.</p><div class="notice">⚠️ Não coloque Access Token, Client Secret ou credenciais privadas do Mercado Pago no GitHub Pages.</div></section>
+</main>
+<button class="cart" onclick="checkout()">🛒 Comprar (<span id="cartCount">0</span>)</button>
+<div id="loginModal" class="modal"><div class="modal-card"><button class="close" onclick="closeLogin()">×</button><h2>Entrar na Zenvik</h2><p class="muted">OAuth 2.0 + OpenID Connect</p><button class="btn primary" style="width:100%" onclick="oauthLogin()">Continuar com Google</button><p id="oauthStatus" class="muted"></p></div></div>
+<footer>© 2026 Zenvik — Loja Oficial</footer>
+<script>
+const PRODUCTS=[
+{id:"YCQ00D-N80L",name:"Jogo de Panelas Antiaderentes 10 Peças",desc:"Baunilha Nacional",price:269.90},
+{id:"YCQ00D-63EL",name:"Escorredor de Louças 2 Andares Zelvi",desc:"Aço Carbono Preto para cozinha",price:229.90},
+{id:"ZEN-0003",name:"Kit 6 Capas de Cadeira",desc:"Malha Spandex lisa e estampada",price:0},
+{id:"ZEN-0004",name:"Smartphone Zenvik",desc:"Produto de teste — configure preço e fornecedor",price:999.90}
+];
+let cart=[];
+function money(v){return v?new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v):'Consulte'}
+function render(){let q=document.getElementById('search').value.toLowerCase();let a=PRODUCTS.filter(p=>(p.name+p.desc+p.id).toLowerCase().includes(q));document.getElementById('count').textContent=a.length+' produto(s)';document.getElementById('grid').innerHTML=a.map(p=>`<article class="card"><span class="tag">ID ${p.id}</span><h3>${p.name}</h3><p class="muted">${p.desc}</p><div class="price">${money(p.price)}</div><button class="btn primary buy" onclick="add('${p.id}')">Comprar</button></article>`).join('')}
+function add(id){let p=PRODUCTS.find(x=>x.id===id);cart.push(p);document.getElementById('cartCount').textContent=cart.length;alert(p.name+' foi adicionado ao carrinho.')}
+function checkout(){if(!cart.length){alert('Adicione um produto primeiro.');return}alert('Checkout Mercado Pago: configure a URL/integração segura no backend antes de publicar pagamentos reais.')}
+function openLogin(){document.getElementById('loginModal').classList.add('on')}
+function closeLogin(){document.getElementById('loginModal').classList.remove('on')}
+function oauthLogin(){
+const clientId=localStorage.getItem('ZENVIК_GOOGLE_CLIENT_ID');
+if(!clientId){document.getElementById('oauthStatus').textContent='O layout está pronto, mas falta configurar o Client ID do provedor OAuth. Não coloque Client Secret neste site.';return}
+const state=crypto.randomUUID();const nonce=crypto.randomUUID();sessionStorage.setItem('oauth_state',state);sessionStorage.setItem('oauth_nonce',nonce);
+const redirect=location.origin+location.pathname;
+const u=new URL('https://accounts.google.com/o/oauth2/v2/auth');
+u.search=new URLSearchParams({client_id:clientId,redirect_uri:redirect,response_type:'code',scope:'openid email profile',state,nonce});
+location.href=u.toString();
+}
+render();
+</script>
+</body></html>
