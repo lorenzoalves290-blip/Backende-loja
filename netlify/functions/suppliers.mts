@@ -27,6 +27,12 @@ const config = {
     token: () => Netlify.env.get("ALIEXPRESS_API_TOKEN"),
     productsPath: () => Netlify.env.get("ALIEXPRESS_PRODUCTS_PATH") || "/products",
     ordersPath: () => Netlify.env.get("ALIEXPRESS_ORDERS_PATH") || "/orders"
+  },
+  foneup: {
+    base: () => Netlify.env.get("FONEUP_API_BASE_URL"),
+    token: () => Netlify.env.get("FONEUP_API_TOKEN"),
+    productsPath: () => Netlify.env.get("FONEUP_PRODUCTS_PATH") || "/products",
+    ordersPath: () => Netlify.env.get("FONEUP_ORDERS_PATH") || "/orders"
   }
 };
 
@@ -67,7 +73,9 @@ export default async (req) => {
         "/api/suppliers/dogama/products",
         "/api/suppliers/dogama/orders",
         "/api/suppliers/aliexpress/products",
-        "/api/suppliers/aliexpress/orders"
+        "/api/suppliers/aliexpress/orders",
+        "/api/suppliers/foneup/products",
+        "/api/suppliers/foneup/orders"
       ]
     }, 404, headers);
   }
