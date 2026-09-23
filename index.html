@@ -34,7 +34,7 @@ body{background:#0f0f12;color:#f5f7fa}.card,.box,.cartrow,.order{background:#181
     const now=new Date(), target=new Date(now);
     const days=(5-now.getDay()+7)%7;
     target.setDate(now.getDate()+days);
-    target.setHours(1,0,0,0);
+    target.setHours(13,0,0,0);
     if(target<=now) target.setDate(target.getDate()+7);
     return target;
   }
@@ -43,7 +43,7 @@ body{background:#0f0f12;color:#f5f7fa}.card,.box,.cartrow,.order{background:#181
     const diff=Math.max(0,target-new Date());
     const total=Math.floor(diff/1000), d=Math.floor(total/86400), h=Math.floor(total%86400/3600), m=Math.floor(total%3600/60), s=total%60;
     timer.textContent=String(d).padStart(2,'0')+':'+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-    label.textContent='Até a primeira promoção de sexta-feira às 01:00';
+    label.textContent='Até a primeira promoção de sexta-feira às 13:00';
   }
   tick(); setInterval(tick,1000);
 })();
